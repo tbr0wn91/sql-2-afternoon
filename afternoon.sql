@@ -230,17 +230,27 @@ group by orders.order_id;
 
 
 
+alter table users add column order_id integer references orders(order_id);
+
+select users.order_id from users
+join orders on (users.users_id = orders.users_id)
+where users.users_id = 1;
 
 
 
+select users.order_id from users
+join orders on (users.user_id = orders.user_id)
+where users.user_id = orders.order_id;
 
 
+select count(*), name from users
+join orders on (users.user_id = orders.user_id)
+group by users.user_id;
 
 
-
-
-
-
+select product.price, users.name from users
+join orders on (users.user_id = orders.user_id)
+join product on (orders.product_id = product.product_id);
 
 
 
